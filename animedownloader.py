@@ -1,0 +1,23 @@
+import time
+import pyautogui
+# pyautogui.mouseInfo()
+time.sleep(5)
+while(True):
+    pyautogui.scroll(-200)
+    time.sleep(1)
+    pyautogui.click("1.png")
+    time.sleep(5)
+    pyautogui.click("2.png")
+    time.sleep(1)
+    pyautogui.click(711,15)
+    time.sleep(1)
+    pyautogui.click("2.png")
+    time.sleep(1)
+    pyautogui.click()
+    time.sleep(2)
+    pyautogui.click(672,461)
+    time.sleep(1)
+    pyautogui.click(471,14)
+    time.sleep(1)
+    pyautogui.click("5.png")
+    time.sleep(3)
