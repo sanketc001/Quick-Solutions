@@ -2174,18 +2174,18 @@ for i in text.split("########################")[:-1]:
                 temp=facts.index(j)
             if (j.startswith("Target Audience: ")):
                 if (temp != None and "".join(facts[temp:facts.index(j)]).startswith("Product: ")):
-                    print("".join(facts[temp:facts.index(j)])[17:])
+                    #print("".join(facts[temp:facts.index(j)])[17:])
                     d.update({"Product": "".join(facts[temp:facts.index(j)])[9:].strip()})
                 temp=facts.index(j)
             if (j.startswith("Startup Stage: ")):
                 if(temp!=None and "".join(facts[temp:facts.index(j)]).startswith("Target Audience: ")):
-                    print("".join(facts[temp:facts.index(j)])[17:])
+                    #print("".join(facts[temp:facts.index(j)])[17:])
                     d.update({"Target Audience": "".join(facts[temp:facts.index(j)])[17:].strip()})
                     temp = None
                 else:
                     print(temp)
                 d.update({"Startup Stage": j[15:].strip()})
-                print(j)
+                #print(j)
             if (j.startswith("Price: ")):
                 d.update({"Price": j[6:].strip()})
             if (j.startswith("Production: ")):
@@ -2194,14 +2194,16 @@ for i in text.split("########################")[:-1]:
             if (j.startswith("• ")):
                 if(temp!=None):
                     d.update({"Support Needed": "".join(facts[temp:facts.index(j)-1]).strip()})
+                if("".join(facts[temp:facts.index(j)]).strip().endswith("NA")):
+                    d.update({"Support Needed": "NA"})
                 temp=None
                 d.update({"Description": "".join(facts[facts.index(j):]).strip()})
 
 
 
-        print(d)
+        #print(d)
         l.append(d)
-        print(facts[1:])
+        #print(facts[1:])
         n=n+1
 with open('startups.csv', 'w',newline="") as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames = l[0].keys())
