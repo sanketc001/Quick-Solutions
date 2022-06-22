@@ -23,7 +23,7 @@ d={"Professors Name":"NA", "Designation":"NA", "Department":"NA", "Email":"NA", 
 driver.get("https://iitgn.ac.in/faculty")
 driver.execute_script("window.scrollTo(0, 700)")
 x=WebDriverWait(driver,60).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[4]/section[2]/div/div/div/div/div[2]/div[197]/div/div[2]/h4/a")))
-for i in range(1,4):
+for i in range(1,198):
     continue_link = driver.find_element(By.XPATH, '/html/body/div[4]/section[2]/div/div/div/div/div[2]/div['+str(i)+']/div/div[2]/h4/a')
     d.update({"Professors Name":continue_link.text})
     continue_link.click()
@@ -44,7 +44,10 @@ for i in range(1,4):
         pass
     try:
         continue_link = driver.find_element(By.XPATH, '/html/body/div[4]/section[2]/div/div/div[2]/div/p[5]')
-        print("0792395"+continue_link.text.__contains__("VOIP: "))
+        print(continue_link.text.split())
+        for k in continue_link.text.split("\n"):
+            if(k.startswith("VOIP: ")):
+                print("0792395"+k[6:])
     except:
         pass
     try:
@@ -53,7 +56,7 @@ for i in range(1,4):
         while True:
             continue_link = driver.find_element(By.XPATH, '/html/body/div[4]/section[3]/div/div/div[1]/div/ul[2]/li[1]/div/ol/li['+str(j)+']/p')
             l.append(str(j)+" "+continue_link.text)
-            i=i+1
+            j=j+1
     except:
         if(len(l)>0):
             d.update({"Current Research Profile":"\n".join(l)})
