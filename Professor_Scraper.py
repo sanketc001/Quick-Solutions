@@ -19,11 +19,13 @@ chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument("--start-maximized")
 driver = webdriver.Chrome(desired_capabilities=caps, chrome_options=chrome_options)
 #Professors name, designation, department, email, number, research interests, current research profile, google scholar link, LinkedIn
-d={"Professors Name":"NA", "Designation":"NA", "Department":"NA", "Email":"NA", "Number":"NA", "Research Interests":"NA", "Current Research Profile":"NA", "Google Scholar Link":"NA", "LinkedIn":"NA"}
 driver.get("https://iitgn.ac.in/faculty")
 driver.execute_script("window.scrollTo(0, 700)")
 x=WebDriverWait(driver,60).until(EC.presence_of_element_located((By.XPATH,"/html/body/div[4]/section[2]/div/div/div/div/div[2]/div[197]/div/div[2]/h4/a")))
+m=[]
 for i in range(1,198):
+    d = {"Professors Name": "NA", "Designation": "NA", "Department": "NA", "Email": "NA", "Number": "NA",
+         "Research Interests": "NA", "Current Research Profile": "NA", "Google Scholar Link": "NA", "LinkedIn": "NA"}
     continue_link = driver.find_element(By.XPATH, '/html/body/div[4]/section[2]/div/div/div/div/div[2]/div['+str(i)+']/div/div[2]/h4/a')
     d.update({"Professors Name":continue_link.text})
     continue_link.click()
@@ -44,10 +46,9 @@ for i in range(1,198):
         pass
     try:
         continue_link = driver.find_element(By.XPATH, '/html/body/div[4]/section[2]/div/div/div[2]/div/p[5]')
-        print(continue_link.text.split())
         for k in continue_link.text.split("\n"):
             if(k.startswith("VOIP: ")):
-                print("0792395"+k[6:])
+                d.update({"Number":"0792395"+k[6:].strip(" (lab)").strip(" -- joining_soon: no")})
     except:
         pass
     try:
@@ -60,6 +61,10 @@ for i in range(1,198):
     except:
         if(len(l)>0):
             d.update({"Current Research Profile":"\n".join(l)})
-            print("\n".join(l))
-
+    m.append(d)
     driver.back()
+print(m)
+with open('professors.csv', 'w',newline="",encoding="utf-8") as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames = m[0].keys())
+    writer.writeheader()
+    writer.writerows(m)
