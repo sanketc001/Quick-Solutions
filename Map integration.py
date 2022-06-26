@@ -15,11 +15,6 @@ print(header)
 410,142
 '''
 time.sleep(5)
-for j in range(20):
-    pyautogui.locate('mark.png')
-    pyautogui.scroll(100)
-    time.sleep(1)
-#pyautogui.mouseInfo()
 for i in rows:
     print(i)
     pyautogui.click(355,111)
@@ -28,8 +23,10 @@ for i in rows:
     time.sleep(1)
     pyautogui.click('cross.png')
     for j in range(20):
-        pyautogui.locate('mark.png')
+        pyautogui.moveTo(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
         pyautogui.scroll(100)
+        time.sleep(1)
+pyautogui.mouseInfo()
 # import gmaps
 # import gmaps.datasets
 #
