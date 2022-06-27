@@ -26,6 +26,12 @@ for i in rows:
         pyautogui.moveTo(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
         pyautogui.scroll(100)
         time.sleep(1)
+    temp=pyautogui.locateCenterOnScreen("mark.png",confidence=0.7)
+    print(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
+    pyautogui.click(410,142)
+    pyautogui.click(temp)
+
+
 pyautogui.mouseInfo()
 # import gmaps
 # import gmaps.datasets
