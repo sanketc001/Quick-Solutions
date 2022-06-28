@@ -15,6 +15,8 @@ print(header)
 410,142
 '''
 time.sleep(5)
+print(pyautogui.KEY_NAMES)
+pyautogui.mouseInfo()
 for i in rows:
     print(i)
     pyautogui.click(355,111)
@@ -28,8 +30,14 @@ for i in rows:
         time.sleep(1)
     temp=pyautogui.locateCenterOnScreen("mark.png",confidence=0.7)
     print(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
-    pyautogui.click(410,142)
+    pyautogui.click(457,147)
     pyautogui.click(temp)
+    pyautogui.write(i[0])
+    pyautogui.hotkey('tab')
+    for j in i[1:]:
+        pyautogui.write(j)
+    pyautogui.hotkey("enter")
+
 
 
 pyautogui.mouseInfo()
