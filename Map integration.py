@@ -16,15 +16,14 @@ print(header)
 '''
 time.sleep(5)
 print(pyautogui.KEY_NAMES)
-pyautogui.mouseInfo()
 for i in rows:
     print(i)
     pyautogui.click(355,111)
     pyautogui.write(i[0])
     pyautogui.click(781,110)
     time.sleep(1)
-    pyautogui.click('cross.png')
-    for j in range(20):
+    pyautogui.click(pyautogui.locateCenterOnScreen('cross.png',confidence=0.9))
+    for j in range(10):
         pyautogui.moveTo(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
         pyautogui.scroll(100)
         time.sleep(1)
@@ -32,7 +31,9 @@ for i in rows:
     print(pyautogui.locateCenterOnScreen("mark.png",confidence=0.7))
     pyautogui.click(457,147)
     pyautogui.click(temp)
+    time.sleep(1)
     pyautogui.write(i[0])
+    time.sleep(1)
     pyautogui.hotkey('tab')
     for j in i[1:]:
         pyautogui.write(j)
