@@ -3,7 +3,7 @@ import os
 face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + '/haarcascade_frontalface_default.xml')
 images = []
 classNames = []
-path = 'input'
+path = 'input_facedetection_labeler'
 directory = 'output'
 mylist = os.listdir(path)
 for cl in mylist:
@@ -16,6 +16,7 @@ for cl in mylist:
         c=1
         for (x, y, w, h) in faces:
             crop_img = curImg[y:y + h, x:x + w]
-            filename = cl+'_'+str(c)+'.jpg'
+            filename = directory+'\\'+ cl+'_'+str(c)+'.jpg'
+            print(filename)
             cv2.imwrite(filename, crop_img)
             c=c+1
