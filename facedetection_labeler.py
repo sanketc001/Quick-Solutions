@@ -18,5 +18,6 @@ for cl in mylist:
             crop_img = curImg[y:y + h, x:x + w]
             filename = directory+'\\'+ cl+'_'+str(c)+'.jpg'
             print(filename)
+            cv2.imshow(crop_img,"person"+str(c))
             cv2.imwrite(filename, crop_img)
             c=c+1
