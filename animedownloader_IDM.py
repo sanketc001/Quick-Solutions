@@ -8,10 +8,10 @@ while(True):
     time.sleep(3)
     pyautogui.click(pyautogui.locateCenterOnScreen("4.png",confidence=0.9))
     time.sleep(2)
-    if(pyautogui.locateCenterOnScreen("6.png")!=None):
-        pyautogui.click(pyautogui.locateCenterOnScreen("6.png"))
-    else:
+    if(pyautogui.locateCenterOnScreen("7.png")!=None):
         pyautogui.click(pyautogui.locateCenterOnScreen("7.png"))
+    else:
+        pyautogui.click(pyautogui.locateCenterOnScreen("6.png"))
     time.sleep(2)
     pyautogui.click(672,461)
     time.sleep(2)
