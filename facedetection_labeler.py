@@ -1,5 +1,10 @@
 import cv2
 import os
+def matcher(face):
+    for facetomatchwith in faces:
+        if(face==facetomatch):
+            return facetomatchwith.name
+
 face_classifier = cv2.CascadeClassifier(cv2.data.haarcascades + '/haarcascade_frontalface_default.xml')
 images = []
 classNames = []
@@ -16,6 +21,8 @@ for cl in mylist:
         c=1
         for (x, y, w, h) in faces:
             crop_img = curImg[y:y + h, x:x + w]
+            if()
+            cv2.rectangle(curImg,(y,w),(y+h,x+w),cv2.HERSEY_COMPLEX,2)
             filename = directory+'\\'+ cl+'_'+str(c)+'.jpg'
             print(filename)
             cv2.imshow(crop_img,"person"+str(c))
