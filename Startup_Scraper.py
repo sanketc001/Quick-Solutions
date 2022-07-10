@@ -30,4 +30,3 @@ for i in l[1:]:
             driver.switch_to.new_window()
         except:
             print(i[4],l.index(i))
-
