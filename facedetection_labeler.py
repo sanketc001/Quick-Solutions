@@ -25,21 +25,36 @@ for cl in mylist:
         c=1
         for (x, y, w, h) in faces:
             crop_img = curImg[y:y + h, x:x + w]
-            if(matcher(curImg[y:y + h, x:x + w])==None):
+            if(matcher(crop_img)==None):
                 pt1 = (y, x)
                 pt2 = (y+h, x+w)
                 color = (255, 0, 0)
                 thickness = 2
                 lineType = cv2.LINE_4
                 img_rect = cv2.rectangle(curImg, pt1, pt2, color, thickness, lineType)
-                text = "Face - 100%"
+                text = "Unknown"
                 org = (400, 30)
                 fontFace = cv2.FONT_HERSHEY_SIMPLEX
                 fontScale = 1
                 color = (0, 255, 25)
                 lineType = cv2.LINE_4
                 img_text = cv2.putText(img_rect, text, org, fontFace, fontScale, color, lineType)
-            cv2.rectangle(curImg,(y,w),(y+h,x+w),cv2.HERSEY_COMPLEX,2)
+                cv2.rectangle(curImg,(y,w),(y+h,x+w),cv2.HERSEY_COMPLEX,2)
+            else:
+                pt1 = (y, x)
+                pt2 = (y + h, x + w)
+                color = (255, 0, 0)
+                thickness = 2
+                lineType = cv2.LINE_4
+                img_rect = cv2.rectangle(curImg, pt1, pt2, color, thickness, lineType)
+                text = matcher(crop_img)
+                org = (400, 30)
+                fontFace = cv2.FONT_HERSHEY_SIMPLEX
+                fontScale = 1
+                color = (0, 255, 25)
+                lineType = cv2.LINE_4
+                img_text = cv2.putText(img_rect, text, org, fontFace, fontScale, color, lineType)
+                cv2.rectangle(curImg, (y, w), (y + h, x + w), cv2.HERSEY_COMPLEX, 2)
             filename = directory+'\\'+ cl+'_'+str(c)+'.jpg'
             print(filename)
             cv2.imshow(crop_img,"person"+str(c))
