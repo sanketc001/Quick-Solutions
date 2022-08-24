@@ -1,7 +1,5 @@
 #import geojson
 import json
-#import pandas as pd
-#import csv
 file=open("Beed-Khasara.geojson","r")
 l=[]
 for i in file:
