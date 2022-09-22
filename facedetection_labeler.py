@@ -1,7 +1,7 @@
 import cv2
 import os
 import mediapipe as mp
-face_classifier=mp.solutions.face_detection.FaceDetection()
+face_classifier=mp.solutions.face_detection.FaceDetection(0.75)
 def matcher(face):
     for facetomatchwith in faces:
         if(face==facetomatchwith):
@@ -17,7 +17,7 @@ directory = 'output'
 mylist = os.listdir(path)
 for cl in mylist:
     curImg = cv2.imread(f'{path}/{cl}')
-    curImg=cv2.resize(curImg,(1366,768))
+    # curImg=cv2.resize(curImg,(1366,768))
     cv2.imshow("img",curImg)
     cv2.waitKey(1000)
     images.append(curImg)
@@ -27,10 +27,12 @@ for cl in mylist:
     # faces = face_classifier.detectMultiScale(gray, 1.9, 10)
     rgb=cv2.cvtColor(curImg, cv2.COLOR_BGR2RGB)
     faces=face_classifier.process(rgb)
-    print(enumerate(faces.detections))
     if faces:
         for id,info in enumerate(faces.detections):
-            print(id,info)
+            mp.solutions.drawing_utils.draw_detection(rgb,info)
+            print(id,info.score[0]*100,info.location_data.relative_bounding_box)
+            cv2.imshow("img", rgb)
+            cv2.waitKey(10000)
     # if faces != ():
     #     c=1
     #     for (x, y, w, h) in faces:
